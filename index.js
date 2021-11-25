@@ -9,13 +9,24 @@ let categories = [
   { id: 1, title: 'Fruits' },
 ];
 
+app.use((req, res, next) => {
+  res.set('Access-Control-Allow-Origin', 'http://localhost:3000')
+  res.set('Access-Control-Allow-Headers', 'Content-Type')
+  next();
+})
+
 app.get('/goods', (req, res) => {
   res.json(goodsService.getAll());
 })
 
 app.get('/goods/:id', (req, res) => {
   const good = goodsService.getOne(req.params.id)
-  res.json(good);
+
+  if (!good) {
+    res.send(404);
+  } else {
+    res.json(good);
+  }
 })
 
 app.post('/goods', express.json(), (req, res) => {

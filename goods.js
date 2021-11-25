@@ -1,8 +1,15 @@
 const { v4: uuidv4 } = require('uuid');
+const faker = require('faker');
 
-let goods = [
-  { id: uuidv4(), title: 'apple', categoryId: 1 },
-];
+let goods = [];
+
+for (let i = 0; i < 20; i++) {
+  goods.push({
+    id: uuidv4(),
+    title: faker.vehicle.model(),
+    categoryId: (i % 3) + 1,
+  })
+}
 
 const getAll = () => {
   return goods;
