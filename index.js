@@ -2,12 +2,20 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 4000;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
+let goods = [
+  { id: 1, title: 'apple', categoryId: 1 },
+];
+
+let categories = [
+  { id: 1, title: 'Fruits' },
+];
+
+app.get('/goods', (req, res) => {
+  res.json(goods)
 })
 
-app.get('/test', (req, res) => {
-  res.send('test 789')
+app.get('/categories', (req, res) => {
+  res.json(categories);
 })
 
 app.listen(PORT, () => {
